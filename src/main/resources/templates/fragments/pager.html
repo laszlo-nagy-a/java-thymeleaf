@@ -1,0 +1,14 @@
+<!--PAGER SECTION-->
+<div th:fragment="pager">
+    <div class="pager">
+        <a class="pager-first" th:if="${currentPage} == 1" th:href="@{/games(page=1)}"> < </a>
+        <a class="pager-prev" th:if="${currentPage} > 1" th:href="@{/games(page=${currentPage} - 1)}"> < </a>
+        <form action="/games" method="get">
+            <input class="pager-input" type="number" name="page" th:value="${currentPage}"/>
+        </form>
+        <span>/</span>
+        <span class="pager-next" th:text="${numberOfPages}"></span>
+        <a class="pager-nex" th:if="${currentPage} < 15" th:href="@{/games(page=${currentPage} + 1)}"> > </a>
+        <a class="pager-last" th:if="${currentPage} == 15" th:href="@{/games(page=${numberOfPages})}"> > </a>
+    </div>
+</div>

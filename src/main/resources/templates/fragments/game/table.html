@@ -1,0 +1,18 @@
+<div th:fragment="game-table" >
+    <div class="list-wrapper row row-cols-1 row-cols-md-3 g-4">
+        <div class="list-item col" th:each="game: ${games}">
+            <a class="card-link" th:href="@{/games/{id}(id=${game.id})}">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${game.name}"></h5>
+                        <p class="card-text card-genre" th:text="${game.genre}"></p>
+                        <p class="card-text card-platform" th:text="${game.platform}"></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted" th:text="${game.score}"></small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
