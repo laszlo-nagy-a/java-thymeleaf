@@ -26,12 +26,7 @@ public class GameService {
 
     public Game getGame(Integer id) {
         Optional<Game> game = gameRepository.findById(id);
-
-        if (game.isPresent()) {
-            return game.get();
-        }
-
-        return null;
+        return game.orElse(null);
     }
 
     public void save(List<Game> game) {
@@ -41,15 +36,12 @@ public class GameService {
     public int numberOfPages(int gamePerPage) {
         List<Game> games = gameRepository.findAll();
         int numberOfGames = games.size();
+        int pageNumber = numberOfGames / gamePerPage;
 
         if(numberOfGames == 0) {
             return 1;
         }
 
-        if(numberOfGames % gamePerPage == 0) {
-            return numberOfGames / gamePerPage;
-        }
-
-        return numberOfGames / gamePerPage + 1;
+        return numberOfGames % gamePerPage == 0 ? pageNumber : pageNumber + 1;
     }
 }
